@@ -6,15 +6,12 @@ def pathfinder():
         musicdirpath = driveletters[elements] + "/" + str(os.environ.get("HOMEPATH")) + "\Musik"
         try:
             os.chdir(musicdirpath)
+            return(musicdirpath)
+            break
         except FileNotFoundError:
             try:
                 musicdirpath = driveletters[elements] + "/" + str(os.environ.get("HOMEPATH")) + "\Music"
                 os.chdir(musicdirpath)
+                return(musicdirpath)
+                break
             except FileNotFoundError:
-                print("Problem with Music folder.")
-
-    for dirpath, dirnames, filenames in os.walk(musicdirpath):
-        print("Pfad: ", dirpath)
-        print("Ordner: ", dirnames)
-        print("Datein: ", filenames)
-        print()
