@@ -8,7 +8,7 @@ from databaseextender import databaseextender
 # from renamer import renamer
 # from directorator import directorator
 
-pathfinder() = musicdirpath
+musicdirpath = pathfinder()
 
 for dirpath, dirnames, filenames in os.walk(musicdirpath):
         print("Pfad: ", dirpath)
