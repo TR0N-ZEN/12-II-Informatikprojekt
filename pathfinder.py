@@ -15,3 +15,7 @@ def pathfinder():
                 return(musicdirpath)
                 break
             except FileNotFoundError:
+###########################################################################################################################
+    while os.chdir(musicdirpath) = FileNotFoundError:
+        musicdirpath = driveletters[elements] + "/" + str(os.environ.get("HOMEPATH")) + "\Musik"
+        elements = elements + 1
