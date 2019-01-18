@@ -1,10 +1,10 @@
 import os
-from typing import Union
-import sqlite3
+# from typing import Union
+# import sqlite3
 from pathfinder import pathfinder
-from extractor import extractor
-from scanner import scanner
-from databaseextender import databaseextender
+# from extractor import extractor
+# from scanner import scanner
+# from databaseextender import databaseextender
 # from renamer import renamer
 # from directorator import directorator
 
