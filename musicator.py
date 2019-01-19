@@ -8,14 +8,13 @@ from pathfinder import pathfinder
 # from renamer import renamer
 # from directorator import directorator
 
-musicdirpath = pathfinder()
-print(str(musicdirpath))
+musicdirpath = pathfinder() # WORKING test with: print(str(musicdirpath))
 
-# for dirpath, dirnames, filenames in os.walk(musicdirpath):
-#         print("Pfad: ", dirpath)
-#         print("Ordner: ", dirnames)
-#         print("Datein: ", filenames)
-#         print()
+for dirpath, dirnames, filenames in os.walk(musicdirpath):
+        print("Pfad: ", dirpath)
+        print("Ordner: ", dirnames)
+        print("Datein: ", filenames)
+        print()
 
 # mp3header = extractor(chosen_file)
 # # print(mp3header)
