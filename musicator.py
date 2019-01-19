@@ -8,7 +8,7 @@ from pathfinder import pathfinder
 # from renamer import renamer
 # from directorator import directorator
 
-musicdirpath = pathfinder() # WORKING test with: print(str(musicdirpath))
+musicdirpath = pathfinder() # WORKING since COMMIT 8 test with: print(str(musicdirpath))
 
 for dirpath, dirnames, filenames in os.walk(musicdirpath):
         print("Pfad: ", dirpath)
