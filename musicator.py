@@ -13,11 +13,14 @@ language = input("Enter de for German or en for English: ")
 musicdirpath = pathfinder(language)
 print(musicdirpath)
 
+files = []
 for dirpath, dirnames, filenames in os.walk(musicdirpath):
         print("Pfad: ", dirpath)
         print("Ordner: ", dirnames)
         print("Datein: ", filenames)
+        files.append(filenames)
         print()
+print(files)
 
 # mp3header = extractor(chosen_file)
 # # print(mp3header)
