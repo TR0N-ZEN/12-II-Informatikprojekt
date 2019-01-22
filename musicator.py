@@ -2,14 +2,16 @@ import os
 # from typing import Union
 # import sqlite3
 from pathfinder import pathfinder
+# here is the os.walk
 # from extractor import extractor
 # from scanner import scanner
 # from databaseextender import databaseextender
 # from renamer import renamer
 # from directorator import directorator
 
+language = input()
 musicdirpath = pathfinder()
-print(str(musicdirpath))
+print(musicdirpath)
 
 # for dirpath, dirnames, filenames in os.walk(musicdirpath):
 #         print("Pfad: ", dirpath)
