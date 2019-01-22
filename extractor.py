@@ -1,6 +1,5 @@
 import os
 
-
 def extractor(filename):
     try:
         with open(filename, "rb") as mp3dat:

@@ -9,8 +9,11 @@ from pathfinder import pathfinder
 # from renamer import renamer
 # from directorator import directorator
 
-language = input()
-musicdirpath = pathfinder()
+print("Enter")
+print("de for German") 
+print("en for English")
+language = str(input())
+musicdirpath = pathfinder(language)
 print(musicdirpath)
 
 # for dirpath, dirnames, filenames in os.walk(musicdirpath):
