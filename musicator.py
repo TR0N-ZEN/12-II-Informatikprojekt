@@ -9,10 +9,7 @@ from pathfinder import pathfinder
 # from renamer import renamer
 # from directorator import directorator
 
-print("Enter")
-print("de for German") 
-print("en for English")
-language = str(input())
+language = input("Enter de for German or en for English: ")
 musicdirpath = pathfinder(language)
 print(musicdirpath)
 
