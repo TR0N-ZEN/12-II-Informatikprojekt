@@ -16,11 +16,11 @@ language = str(input())
 musicdirpath = pathfinder(language)
 print(musicdirpath)
 
-# for dirpath, dirnames, filenames in os.walk(musicdirpath):
-#         print("Pfad: ", dirpath)
-#         print("Ordner: ", dirnames)
-#         print("Datein: ", filenames)
-#         print()
+for dirpath, dirnames, filenames in os.walk(musicdirpath):
+        print("Pfad: ", dirpath)
+        print("Ordner: ", dirnames)
+        print("Datein: ", filenames)
+        print()
 
 # mp3header = extractor(chosen_file)
 # # print(mp3header)
