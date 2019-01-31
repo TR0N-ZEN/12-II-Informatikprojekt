@@ -10,15 +10,19 @@ from pathfinder import pathfinder
 
 language = input("Enter de for German or en for English: ")
 musicdirpath = pathfinder(language)
-print("Dein  Musikordner befidnet sich in: " + str(musicdirpath))
+print("Dein  Musikordner befindet sich in: " + str(musicdirpath))
 
+pathfiledict = {
+}
 for dirpath, dirnames, filenames in os.walk(musicdirpath):
         print("Pfad: ", dirpath)
-        print("Ordner: ", dirnames)
-        print("Datein: ", filenames)
+        pathfiledict[dirpath] = filenames
+        # print("Ordner: ", dirnames)
+        print("Datein: ", filenames) 
         # for files in filenames:
         #         mp3header = extractor(files)
         #         metadata = scanner(mp3header)
         #         databaseextender(metadata)
         #         renamer(metadata)
         #         directorator(metadata)
+print(pathfiledict)
