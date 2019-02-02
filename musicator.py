@@ -2,7 +2,7 @@ import os
 # from typing import Union
 # import sqlite3
 from pathfinder import pathfinder
-# from extractor import extractor
+from extractor import extractor
 # from scanner import scanner
 # from databaseextender import databaseextender
 # from renamer import renamer
@@ -11,18 +11,29 @@ from pathfinder import pathfinder
 language = input("Enter de for German or en for English: ")
 musicdirpath = pathfinder(language)
 print("Dein  Musikordner befindet sich in: " + str(musicdirpath))
+print("-------------------------------------------------------------------------")
 
-pathfiledict = {
-}
-for dirpath, dirnames, filenames in os.walk(musicdirpath):
-        print("Pfad: ", dirpath)
-        pathfiledict[dirpath] = filenames
+pathfiledict = {}
+class filesindict:
+        def _init_(self, path, musicfilesinpath):
+                
+
+for dirpath, dirnames, musicfiles in os.walk(musicdirpath):
+        # print("Pfad: ", dirpath)
         # print("Ordner: ", dirnames)
-        print("Datein: ", filenames) 
+        # print("Datein: ", filenames)
+        pathfiledict[dirpath] = musicfiles
         # for files in filenames:
         #         mp3header = extractor(files)
         #         metadata = scanner(mp3header)
         #         databaseextender(metadata)
         #         renamer(metadata)
         #         directorator(metadata)
-print(pathfiledict)
+
+for i in pathfiledict:
+        print(i)
+        print(pathfiledict[i])
+        print()
+
+for i in pathfiledict:
+        print(extractor(pathfiledict))
