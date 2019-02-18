@@ -1,12 +1,13 @@
 import os
 # from typing import Union
-# import sqlite3
+import sqlite3
 from pathfinder import pathfinder
 from extractor import extractor
 # from scanner import scanner
 # from databaseextender import databaseextender
 # from renamer import renamer
 # from directorator import directorator
+
 
 language = input("Enter de for German or en for English: ")
 musicdirpath = pathfinder(language)
@@ -34,6 +35,5 @@ for i in pathfiledict:
         print(i)
         print(pathfiledict[i])
         print()
-
-for i in pathfiledict:
         print(extractor(pathfiledict))
+        
