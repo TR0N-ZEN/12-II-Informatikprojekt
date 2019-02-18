@@ -4,12 +4,7 @@ import sqlite3
 def scanner(mp3header):
     # enter the following in the console to install mysql connector: python -m pip install mysql-connector
     # inetgrate database an loop through; learn parsing / checking if a string is part of another string, the compare string which is checked if it is in the other comes out of a list, so its an elemnt of the list an the lements can be looped throug
-    artistsdatabaseobject =sqlite3.connect(
-        host="localhsot"
-        user="scanner"
-        passwd="1123"
-        database="artists"
-    )
+    artistsdatabaseobject =sqlite3.connect()
     pointer = artistsdatabaseobject.cursor()
     print() # for checking
     for i in # amount of artist entries in database
