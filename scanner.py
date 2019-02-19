@@ -11,9 +11,9 @@ def scanner(mp3header):
     pointer.execute("select * from artists_table")
     artists = pointer.fetchall()
     print(artists)
-    # for i in artists:
-    #     if mp3header.find(artists[i]):
-            
-    #     else:
-    #         i = i + 1
-    return(metadata) # return objects possible otherwise take tuple?
+    for i in artists:
+        if mp3header.find(artists[i]):
+                return artists[i]
+                break
+        else:
+                pass
