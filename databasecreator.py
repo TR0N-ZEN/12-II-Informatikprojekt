@@ -1,8 +1,8 @@
 import sqlite3
-artist = ["Maxim Schunk", "Linkin Park"]
-artistsdatabaseobject =sqlite3.connect(artists.db)
+
+artistsdatabaseobject = sqlite3.connect("artists.db")
 pointer = artistsdatabaseobject.cursor()
 pointer.execute("create table artists_table (artist)")
-pointer.executemany("insert into artists_table values (?)", artist)
-pointer.commit()
-pointer.close()
+# pointer.execute("insert into artists_table values (?)", liste)
+artistsdatabaseobject.commit()
+artistsdatabaseobject.close()

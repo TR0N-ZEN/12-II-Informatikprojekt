@@ -8,32 +8,22 @@ from extractor import extractor
 # from renamer import renamer
 # from directorator import directorator
 
+print(os.getcwd())
 
 language = input("Enter de for German or en for English: ")
 musicdirpath = pathfinder(language)
 print("Dein  Musikordner befindet sich in: " + str(musicdirpath))
 print("-------------------------------------------------------------------------")
 
-pathfiledict = {}
-class filesindict:
-        def _init_(self, path, musicfilesinpath):
-                
-
-for dirpath, dirnames, musicfiles in os.walk(musicdirpath):
-        # print("Pfad: ", dirpath)
-        # print("Ordner: ", dirnames)
-        # print("Datein: ", filenames)
-        pathfiledict[dirpath] = musicfiles
-        # for files in filenames:
-        #         mp3header = extractor(files)
-        #         metadata = scanner(mp3header)
-        #         databaseextender(metadata)
-        #         renamer(metadata)
-        #         directorator(metadata)
-
-for i in pathfiledict:
-        print(i)
-        print(pathfiledict[i])
-        print()
-        print(extractor(pathfiledict))
+for dirpath, dirnames, filenames in os.walk(musicdirpath):
+        print("Pfad: ", dirpath)
+        print("Ordner: ", dirnames)
+        print("Datein: ", filenames)
+        print("________________________________________________________________________")
+        for files in filenames:
+                mp3header = extractor(files)
+                # metadata = scanner(mp3header)
+                # databaseextender(metadata)
+                # renamer(metadata)
+                # directorator(metadata)
         
