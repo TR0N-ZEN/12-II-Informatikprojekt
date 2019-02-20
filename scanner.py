@@ -10,10 +10,9 @@ def scanner(mp3header):
     pointer = artistsdatabaseobject.cursor()
     pointer.execute("select * from artists_table")
     artists = pointer.fetchall()
-    print(artists)
-    for i in artists:
-        if mp3header.find(artists[i]):
-                return artists[i]
+    for e in artists:
+        if mp3header.find(e):
+                return e
                 break
         else:
                 pass
