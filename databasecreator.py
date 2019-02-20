@@ -1,6 +1,6 @@
 import sqlite3
 
-liste = ["2Cellos", "ACDC", "ZZ Top"]
+liste = ["2Cellos", "ACDC", "ZZ Top", "Brother Dege"]
 artistsdatabaseobject = sqlite3.connect("artists.db")
 pointer = artistsdatabaseobject.cursor()
 # pointer.execute("create table artists_table (num, artist)")

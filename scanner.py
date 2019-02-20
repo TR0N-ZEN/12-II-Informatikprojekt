@@ -2,10 +2,10 @@ import os
 import sqlite3
 
 def scanner(mp3header):
-    class metadata:
-        def __init__(self, interprete, title):
-            self.interprete = databaseartist
-            self.title = title
+#     class metadata:
+#         def __init__(self, interprete, title):
+#             self.interprete = databaseartist
+#             self.title = title
     artistsdatabaseobject =sqlite3.connect("artists.db")
     pointer = artistsdatabaseobject.cursor()
     pointer.execute("select * from artists_table")

@@ -3,8 +3,8 @@ import os
 import sqlite3
 from pathfinder import pathfinder
 from extractor import extractor
-# from scanner import scanner
-# from databaseextender import databaseextender
+from scanner import scanner
+from databaseextender import databaseextender
 # from renamer import renamer
 # from directorator import directorator
 
@@ -26,4 +26,3 @@ for dirpath, dirnames, filenames in os.walk(musicdirpath):
                 databaseextender(metadata)
                 # renamer(metadata)
                 # directorator(metadata)
-        
