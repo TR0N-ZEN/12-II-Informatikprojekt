@@ -19,8 +19,8 @@ for dirpath, dirnames, filenames in os.walk(musicdirpath):
         f_name, f_ext = os.path.splitext(f)
         if f_ext == ".mp3":
                 mp3header = extractor(files)
-                metadata = scanner(mp3header)
+                metadata = scanner(mp3header) # artistsname
                 artist_from_filename = filenameananalyzer(f_name)
                 # databaseextender()
                 # renamer(metadata)
-                directorator()
+                directorator(artist_from_filename)

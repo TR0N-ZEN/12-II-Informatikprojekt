@@ -16,7 +16,7 @@ pointer = artistsdatabaseobject.cursor()
 pointer.execute("select * from artists_table")
 artists = pointer.fetchall()
 artistsdatabaseobject.close()
-# print(artists)
+print(artists)
 
 # print(os.getcwd())
 # output = subprocess.check_output("dir /d", shell=True)
