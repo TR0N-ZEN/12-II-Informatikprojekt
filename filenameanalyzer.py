@@ -1,6 +1,7 @@
 import os
+import sqlite3
 
-def filenameanalyzer:
+def filenameanalyzer(f_name):
     artistsdatabaseobject =sqlite3.connect("artists.db")
     pointer = artistsdatabaseobject.cursor()
     pointer.execute("select * from artists_table")

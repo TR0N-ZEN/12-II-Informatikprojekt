@@ -12,7 +12,7 @@ def scanner(mp3header):
     artists = pointer.fetchall()
     print(artists)
     for i in artists:
-        if mp3header.find(artists[i]):
-                return artists[i]
+        if mp3header.find(i[1]):
+                return i[1]
         else:
                 pass

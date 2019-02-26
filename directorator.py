@@ -1,9 +1,13 @@
 import os
+from shutil import copyfile
+import pathlib
 
-
-def directorator(interprete):
-    if os.path.isdir(interprete) = True:
+def directorator(musicdirpath,filename,path,interprete):
+    os.chdir(musicdirpath)
+    destination = pathlib.PurePath(musicdirpath).joinpath(interprete)
+    if os.path.isdir(destination) == True:
+        copyfile(musicdirpath,destination)
         # copy file with the passes name to this folder
     else:
-        os.makedir(interprete)
+        os.mkdir(interprete)
         #copy files with the passed name into that folder
