@@ -4,25 +4,23 @@ import sqlite3
 from pathfinder import pathfinder
 from extractor import extractor
 from scanner import scanner
-from databaseextender import databaseextender
+from filenameanalyzer import filenameanalyzer
+# from databaseextender import databaseextender
 # from renamer import renamer
-# from directorator import directorator
-
-print(os.getcwd())
+from directorator import directorator
 
 language = input("Enter de for German or en for English: ")
 musicdirpath = pathfinder(language)
-print("Dein  Musikordner befindet sich in: " + str(musicdirpath))
+print("Dein Musikordner befindet sich in: " + str(musicdirpath))
 print("-------------------------------------------------------------------------")
 
 for dirpath, dirnames, filenames in os.walk(musicdirpath):
-        # print("Pfad: ", dirpath)
-        # print("Ordner: ", dirnames)
-        # print("Datein: ", filenames)
-        # print("________________________________________________________________________")
-        for files in filenames:
+    for f in filenames:
+        f_name, f_ext = os.path.splitext(f)
+        if f_ext == ".mp3":
                 mp3header = extractor(files)
-                metadata = scanner(mp3header)
-                databaseextender(metadata)
+                metadata = scanner(mp3header) # artistsname
+                artist_from_filename = filenameananalyzer(f_name)
+                # databaseextender()
                 # renamer(metadata)
-                # directorator(metadata)
+                directorator(artist_from_filename)
