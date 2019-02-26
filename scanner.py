@@ -6,7 +6,7 @@ def scanner(mp3header):
 #         def __init__(self, interprete, title):
 #             self.interprete = databaseartist
 #             self.title = title
-    artistsdatabaseobject =sqlite3.connect("artists.db")
+    artistsdatabaseobject = sqlite3.connect("artists.db")
     pointer = artistsdatabaseobject.cursor()
     pointer.execute("select * from artists_table")
     artists = pointer.fetchall()
@@ -14,6 +14,5 @@ def scanner(mp3header):
     for i in artists:
         if mp3header.find(artists[i]):
                 return artists[i]
-                break
         else:
                 pass
