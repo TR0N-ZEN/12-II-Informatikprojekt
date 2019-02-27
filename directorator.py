@@ -9,6 +9,6 @@ def directorator(musicdirpath,filename,path,interprete):
         copyfile(target,destination)
         # copy file with the passes name to this folder
     else:
-        os.mkdir(interprete)
-        copyfile(musicdirpath,destination)
+        os.mkdir(destination)
+        copyfile(target,destination)
         #copy files with the passed name into that folder

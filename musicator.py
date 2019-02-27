@@ -18,6 +18,7 @@ artistsdatabaseobject =sqlite3.connect("artists.db")
 pointer = artistsdatabaseobject.cursor()
 pointer.execute("select * from artists_table")
 artists = pointer.fetchall()
+
 for dirpath, dirnames, filenames in os.walk(musicdirpath):
     for f in filenames:
         f_name, f_ext = os.path.splitext(f)
