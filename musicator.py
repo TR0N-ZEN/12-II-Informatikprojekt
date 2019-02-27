@@ -2,9 +2,9 @@ import os
 # from typing import Union
 import sqlite3
 from pathfinder import pathfinder
-from extractor import extractor
-from scanner import scanner
-from filenameanalyzer import filenameanalyzer
+# from extractor import extractor
+# from scanner import scanner
+# from filenameanalyzer import filenameanalyzer
 # from databaseextender import databaseextender
 # from renamer import renamer
 from directorator import directorator
@@ -14,13 +14,19 @@ musicdirpath = pathfinder(language)
 print("Dein Musikordner befindet sich in: " + str(musicdirpath))
 print("-------------------------------------------------------------------------")
 
+artistsdatabaseobject =sqlite3.connect("artists.db")
+pointer = artistsdatabaseobject.cursor()
+pointer.execute("select * from artists_table")
+artists = pointer.fetchall()
 for dirpath, dirnames, filenames in os.walk(musicdirpath):
     for f in filenames:
         f_name, f_ext = os.path.splitext(f)
         if f_ext == ".mp3":
                 #mp3header = extractor(f)
                 #metadata = scanner(mp3header) # artistsname
-                artist_from_filename = filenameanalyzer(f_name)
+                for e in artists:
+                        if f_name.find(e[1]) != -1:
+                                artist_from_filename = e[1]
                 # databaseextender()
                 # renamer(metadata)
                 directorator(musicdirpath,f,dirpath,artist_from_filename)

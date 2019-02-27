@@ -3,10 +3,10 @@ from shutil import copyfile
 import pathlib
 
 def directorator(musicdirpath,filename,path,interprete):
-    os.chdir(musicdirpath)
+    target = pathlib.PurePath(path).joinpath(str(filename))
     destination = pathlib.PurePath(musicdirpath).joinpath(str(interprete))
     if os.path.isdir(destination) == True:
-        copyfile(musicdirpath,destination)
+        copyfile(target,destination)
         # copy file with the passes name to this folder
     else:
         os.mkdir(interprete)
