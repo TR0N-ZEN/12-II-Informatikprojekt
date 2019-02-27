@@ -9,9 +9,7 @@ def pathfinder(language):
     driveletters = ["A", "B", "C", "D", "E", "F", "G"]
     for i in driveletters:
         musicdirpath = i + homepath[1:] + langdict[language]
-        try:
-            os.chdir(musicdirpath)
-        except FileNotFoundError:
-            pass
+        if os.path.isdir(musicdirpath) == True:
+            return musicdirpath
         else:
-            return(musicdirpath)
+            pass
