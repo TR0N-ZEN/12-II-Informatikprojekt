@@ -26,20 +26,21 @@ filenames_for_analyzation= []
 
 global artistname_from_filename
 artistname_from_filename = "NONE"
+global found
+found = False
 
 #filenames = os.scandir(musicdirpath) # optional for only scanning without scanning subfolders in comparison to os.walk()
 for dirpath, dirnames, filenames in os.walk(musicdirpath):
     for f in filenames:
         f_name,f_ext = os.path.splitext(f)
         if f_ext == ".mp3":
-                #mp3header = extractor(f)
-                #metadata = scanner(mp3header) # artistsname
+                found = False
                 for e in artists:
                         if f_name.find(e[1]) != -1:
                                 directorator(musicdirpath,f,dirpath,e[1])
+                                found = True
                         else:
                                 pass
-                if filenames_for_analyzation.append(f_name)
-                        # databaseextender()
-                        # renamer(metadata)
+                if found == False:
+                        filenames_for_analyzation.append(f_name)
 print(filenames_for_analyzation)
