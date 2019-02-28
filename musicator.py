@@ -19,6 +19,8 @@ pointer = artistsdatabaseobject.cursor()
 pointer.execute("select * from artists_table")
 artists = pointer.fetchall()
 artistsdatabaseobject.close()
+filenames_for_analyzation = []
+count = 0
 global artistname_from_filename
 artistname_from_filename = "NONE"
 for dirpath, dirnames, filenames in os.walk(musicdirpath):
@@ -32,6 +34,8 @@ for dirpath, dirnames, filenames in os.walk(musicdirpath):
                                 artistname_from_filename = e[1]
                                 directorator(musicdirpath,f,dirpath,artistname_from_filename)
                         else:
-                                pass
+                                filenames_for_analyzation.append(f_name)
+                                count = count + 1
                         # databaseextender()
                         # renamer(metadata)
+print(filenames_for_analyzation)
