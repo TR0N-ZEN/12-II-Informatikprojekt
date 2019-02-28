@@ -10,32 +10,36 @@ from directorator import directorator
 
 language = input("Enter de for German or en for English: ")
 musicdirpath = pathfinder(language)
+print("-------------------------------------------------------------------------")
 print("Dein Musikordner befindet sich in: " + str(musicdirpath))
 print("-------------------------------------------------------------------------")
-print(os.getcwd())
-print("-------------------------------------------------------------------------")
+
+#get elements from database (e[0]=artistname.len(); e[1]=artistname)
 artistsdatabaseobject = sqlite3.connect("artists.db")
 pointer = artistsdatabaseobject.cursor()
 pointer.execute("select * from artists_table")
 artists = pointer.fetchall()
 artistsdatabaseobject.close()
-filenames_for_analyzation = []
-count = 0
+
+#filenames for string comparison if no artist has been found in the database
+filenames_for_analyzation= []
+
 global artistname_from_filename
 artistname_from_filename = "NONE"
+
+#filenames = os.scandir(musicdirpath) # optional for only scanning without scanning subfolders in comparison to os.walk()
 for dirpath, dirnames, filenames in os.walk(musicdirpath):
     for f in filenames:
-        f_name, f_ext = os.path.splitext(f)
+        f_name,f_ext = os.path.splitext(f)
         if f_ext == ".mp3":
                 #mp3header = extractor(f)
                 #metadata = scanner(mp3header) # artistsname
                 for e in artists:
                         if f_name.find(e[1]) != -1:
-                                artistname_from_filename = e[1]
-                                directorator(musicdirpath,f,dirpath,artistname_from_filename)
+                                directorator(musicdirpath,f,dirpath,e[1])
                         else:
-                                filenames_for_analyzation.append(f_name)
-                                count = count + 1
+                                pass
+                if filenames_for_analyzation.append(f_name)
                         # databaseextender()
                         # renamer(metadata)
 print(filenames_for_analyzation)
