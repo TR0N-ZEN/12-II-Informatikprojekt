@@ -6,7 +6,7 @@ from pathfinder import pathfinder
 # from filenameanalyzer import filenameanalyzer
 # from databaseextender import databaseextender
 # from renamer import renamer
-# from directorator import directorator
+from directorator import directorator
 
 language = input("Enter de for German or en for English: ")
 musicdirpath = pathfinder(language)
@@ -30,7 +30,8 @@ for dirpath, dirnames, filenames in os.walk(musicdirpath):
                 for e in artists:
                         if f_name.find(e[1]) != -1:
                                 artistname_from_filename = e[1]
-                print(artistname_from_filename)
-                # databaseextender()
-                # renamer(metadata)
-                # directorator(musicdirpath,f,dirpath,artist_from_filename)
+                                directorator(musicdirpath,f,dirpath,artistname_from_filename)
+                        else:
+                                pass
+                        # databaseextender()
+                        # renamer(metadata)

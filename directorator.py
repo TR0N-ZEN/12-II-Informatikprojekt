@@ -1,12 +1,17 @@
 import os
-from shutil import copyfile
+from shutil import copy
 import pathlib
 
 def directorator(musicdirpath,filename,path,artist_from_filename):
-    target = pathlib.PurePath(path).joinpath(filename)
+    source = pathlib.PurePath(path).joinpath(filename)
+    print(source)
     destination = pathlib.PurePath(musicdirpath).joinpath(artist_from_filename)
+    print(destination)
     if os.path.isdir(destination) == True:
-        copyfile(target,destination)
+        print("destination exists")
+        copy(source,destination)
     else:
+        print("destination does not exist")
         os.mkdir(destination)
-        copyfile(target,destination)
+        # copy(source,destination)
+    os.remove(source)
