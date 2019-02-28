@@ -43,4 +43,6 @@ for dirpath, dirnames, filenames in os.walk(musicdirpath):
                                 pass
                 if found == False:
                         filenames_for_analyzation.append(f_name)
-print(filenames_for_analyzation)
+
+for a in filenames_for_analyzation:
+        letters = a.split()

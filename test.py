@@ -1,3 +1,3 @@
-import os
-import sqlite3
-
+a = "hello"
+letters = a.split()
+print(letters)
