@@ -41,8 +41,32 @@ for dirpath, dirnames, filenames in os.walk(musicdirpath):
                                 found = True
                         else:
                                 pass
-                if found == False:
-                        filenames_for_analyzation.append(f_name)
+                # if found == False:
+                #         filenames_for_analyzation.append(f_name)
 
-for a in filenames_for_analyzation:
-        letters = a.split()
+pieces = []
+filenames_for_analyzation = []
+global count
+count = 0
+for e in os.scandir(musicdirpath): # filenames_for_analyzation:
+        f = e.name
+        z = f.split(" ")
+        pieces.append(z)
+        filenames_for_analyzation.append(f)
+
+for e in os.scandir(musicdirpath): # filenames_for_analyzation:
+        f = e.name
+        f_name,f_ext = os.path.splitext(f)
+        if f_ext == ".mp3":
+                for r in pieces:
+                        if pieces.index(r) != filenames_for_analyzation.index(f):
+                                for t in r:
+                                        if f.find(t) != -1:
+                                                if t != "-":
+                                                        count = count + 1
+                                                        if count > 4:
+                                                                x = input("Is " + str(t) + " an artist? \n y/n: ")
+                                                                if x == "y":
+                                                                        print("Creating a fodler an moving files")
+                                                                else:
+                                                                        print("okay") # NEXT UP  test on pieces in row combination
