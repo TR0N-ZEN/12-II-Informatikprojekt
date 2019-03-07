@@ -24,7 +24,14 @@ def analyzer(f,r,compound_guess,nextpart,count,legacy):
                 compound_guess = compound_guess + " " + nextpart
                 analyzer(f,r,compound_guess,nextpart,count,legacy)
         else: 
+                if count == 3:
+                        q = input("Is " + legacy + " an artist?\n y/n")
+                        if q == "y":
+                                directorator(musicdirpath,f,musicdirpath,legacy)
                 final.append([legacy,count])
+
+global x
+x = 0
 
 def one_under_top(filenames, pieces):
         for f in filenames:
@@ -32,6 +39,7 @@ def one_under_top(filenames, pieces):
                         if pieces.index(r) != filenames.index(f) and f.find(r[0]) != -1:
                                 analyzer(f,r,r[0],r[0],0,"") # f = filename; r = Liste der filenamesubstrings auf die ein Leerzeichen folgt; r[0]; r[1]; count = 0; legacy ist leerer string da es kein legacy gibt
         print(final)
+
 top(filenames)
 one_under_top(filenames,pieces)
 
