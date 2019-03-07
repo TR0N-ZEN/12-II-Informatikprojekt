@@ -46,27 +46,50 @@ for dirpath, dirnames, filenames in os.walk(musicdirpath):
 
 pieces = []
 filenames_for_analyzation = []
+
 global count
+global count_row_1
+global coun_row_2
+count_row_2 = 0
+count_row_1 = 0
 count = 0
-for e in os.scandir(musicdirpath): # filenames_for_analyzation:
-        f = e.name
-        z = f.split(" ")
-        pieces.append(z)
-        filenames_for_analyzation.append(f)
 
 for e in os.scandir(musicdirpath): # filenames_for_analyzation:
-        f = e.name
-        f_name,f_ext = os.path.splitext(f)
-        if f_ext == ".mp3":
-                for r in pieces:
-                        if pieces.index(r) != filenames_for_analyzation.index(f):
-                                for t in r:
-                                        if f.find(t) != -1:
-                                                if t != "-":
-                                                        count = count + 1
-                                                        if count > 4:
-                                                                x = input("Is " + str(t) + " an artist? \n y/n: ")
+        filenames_for_analyzation.append(e.name)
+        z = e.name.split(" ") # returns a list of strings which in the the string e.name were "seperated" by space
+        print(z)
+        pieces.append(z)
+
+for e in os.scandir(musicdirpath): # filenames_for_analyzation:
+        f_name,f_ext = os.path.splitext(e.name)
+        for r in pieces: # für elemente in Liste pieces
+                if pieces.index(r) != filenames_for_analyzation.index(f_name): # wenn index von r in Liste pieces verschieden von index des Filenames ohne Dateiendung (f_name) in Liste filenames for analyzation
+                        for t in r: # für elemente in Liste r
+                                if f_name.find(t) != -1 and t != "-": # wenn t in f gefunden (nach IO von str.find() ist -1 nicht gefunden, d.h. wenn t nicht nicht in f gefunden)
+                                        count = count + 1 # count für Häufigkeit des Funds von t in f
+                                        i = r.index(t) # i ist index von t in r
+                                        compound_guess_1 = t + " " + r[i+1] # Zusammenbasteln eines Strings aus gefundenem Teil t und ts Nachfolger in r (hier als r[i+1])
+                                        if f_name.find(compound_guess_1) != -1:
+                                                count_row_1 = count_row_1 + 1
+                                                compound_guess_2 = compound_guess_1 + " " + r[i+2]
+                                                if f_name.find(compound_guess_2) != -1:
+                                                        count_row_2 = count_row_2 + 1
+                                                        if count_row_2 > 4:
+                                                                x = input("Is " + compound_guess_2 + " an artist? \n y/n: ")
                                                                 if x == "y":
-                                                                        print("Creating a fodler an moving files")
+                                                                        print("Creating a folder an moving files")
                                                                 else:
                                                                         print("okay") # NEXT UP  test on pieces in row combination
+                                                elif count_row_1 > 4:
+                                                        x = input("Is " + compound_guess_1 + " an artist? \n y/n: ")
+                                                        if x == "y":
+                                                                print("Creating a folder an moving files")
+                                                        else:
+                                                                print("okay") # NEXT UP  test on pieces in row combination
+                                        else:
+                                                if count > 4:
+                                                        x = input("Is " + str(t) + " an artist? \n y/n: ")
+                                                        if x == "y":
+                                                                print("Creating a folder an moving files")
+                                                        else:
+                                                                print("okay") # NEXT UP  test on pieces in row combination
