@@ -60,7 +60,7 @@ global not_necessary_to_query
 not_necessary_to_query = []
 
 def analyzer(f,r,compound_guess,nextpart,count,legacy):
-        if compount_guess not in not_necessary_to_query and if f.find(compound_guess) != -1:
+        if compound_guess not in not_necessary_to_query and f.find(compound_guess) != -1:
                 count = count + 1
                 i = r.index(nextpart) # getting index of nextpart
                 nextpart = r[i+1] # redefining nextpart as the item following the current nextpart in list r
