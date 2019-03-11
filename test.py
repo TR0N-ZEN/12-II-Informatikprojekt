@@ -1,3 +1,5 @@
+import sqlite3
+
 a = "Avicii and Friends Addicted to you"
 b = "Avicii and Friends Hey Brother"
 c = "Avicii and Friends For a better day"
@@ -27,7 +29,16 @@ def analyzer(f,r,compound_guess,nextpart,count,legacy):
                 if count == 3:
                         q = input("Is " + legacy + " an artist?\n y/n")
                         if q == "y":
-                                directorator(musicdirpath,f,musicdirpath,legacy)
+                                print("Nice we´ll be creating a folder for you")
+                                # add artist to database inorder to run comparison with database again and copy all those whose artist was just added
+                                artistsdatabaseobject = sqlite3.connect("artists.db")
+                                pointer = artistsdatabaseobject.cursor()
+                                num = len(legacy)
+                                comp = [num, legacy]
+                                pointer.execute("INSERT INTO artists_table values (?, ?)", comp)
+                                artistsdatabaseobject.commit()
+                                artistsdatabaseobject.close()
+                                # directorator(musicdirpath,f,musicdirpath,legacy) - bad idea, as it causes only the third and following files to be copied
                 final.append([legacy,count])
 
 global x
