@@ -6,6 +6,8 @@ c = "Avicii and Friends For a better day"
 filenames = [a, b, c]
 pieces = []
 
+if "Avicii Friends Addicted to you" not in filenames:
+        print("yes")
 
 def top(filenames):
     for e in filenames:
@@ -51,8 +53,8 @@ def one_under_top(filenames, pieces):
                                 analyzer(f,r,r[0],r[0],0,"") # f = filename; r = Liste der filenamesubstrings auf die ein Leerzeichen folgt; r[0]; r[1]; count = 0; legacy ist leerer string da es kein legacy gibt
         print(final)
 
-top(filenames)
-one_under_top(filenames,pieces)
+# top(filenames)
+# one_under_top(filenames,pieces)
 
 # count = 0
 # def one_under_top(filenames, pieces):
