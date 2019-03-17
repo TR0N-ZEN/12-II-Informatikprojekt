@@ -52,14 +52,14 @@ final = []
 global not_necessary_to_query
 not_necessary_to_query = []
 
-def analyzer(f,r,compound_guess,nextpart,count,legacy):
-        if compound_guess not in not_necessary_to_query and f.find(compound_guess) != -1 and count < len(r):
+def analyzer(f,r,compound_guess,nextpart,count,legacy,i):
+        if compound_guess not in not_necessary_to_query and f.find(compound_guess) != -1 and i < len(r) == True:
                 count = count + 1
                 i = r.index(nextpart) # getting index of nextpart
                 nextpart = r[i+1] # redefining nextpart as the item following the current nextpart in list r
                 legacy = compound_guess # savin the confirmed / approved compound_guess for next recursion so that if it fails it will go to else and return legacy, the last ompound_guess that worked
                 compound_guess = compound_guess + " " + nextpart
-                analyzer(f,r,compound_guess,nextpart,count,legacy)
+                analyzer(f,r,compound_guess,nextpart,count,legacy,i)
         elif count == 3:
                 q = input("Is " + legacy + " an artist?\n y/n")
                 if q == "y":
@@ -70,14 +70,14 @@ def analyzer(f,r,compound_guess,nextpart,count,legacy):
                 elif q == "n":
                         not_necessary_to_query.append(legacy)
 
-global x
-x = 0
+global i
+i = 0
 
 def start_analyzer(filenames, pieces):
         for f in filenames:
                 for r in pieces:
                         if pieces.index(r) != filenames.index(f) and f.find(r[0]) != -1: # r of pieces and f of filenames with the same index suggests that r is a derivative of f which causes a 100% match causing problems in the matching mechanism 
-                                analyzer(f,r,r[0],r[0],0,"") # passed variables: f = filename; r = list of filenamesubstrings which are followed by a space; r[0]; r[1]; count = 0; legacy is an empty string as there is no legacy value
+                                analyzer(f,r,r[0],r[0],0,"",i) # passed variables: f = filename; r = list of filenamesubstrings which are followed by a space; r[0]; r[1]; count = 0; legacy is an empty string as there is no legacy value
         print(final)
 
 start_analyzer(filenames_for_analyzation,pieces)
