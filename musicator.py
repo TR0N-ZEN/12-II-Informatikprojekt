@@ -10,7 +10,7 @@ from databaseextender import databaseextender
 language = input("Enter de for German or en for English: ")
 musicdirpath = pathfinder(language) # MODULE
 print("-------------------------------------------------------------------------")
-print("Dein Musikordner befindet sich in: " + str(musicdirpath))
+print("Dein Musikordner befindet sich in: " + musicdirpath)
 print("-------------------------------------------------------------------------")
 
 # get elements from database (e[0]=artistname.len(); e[1]=artistname)
