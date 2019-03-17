@@ -1,7 +1,8 @@
 import os
 
 def pathfinder(language):
-    homepath = str(os.environ.get("HOME"))
+    homepath = os.environ.get("HOME")
+    print(homepath)
     langdict = {
         "de": "\\Musik",
         "en": "\\Music"
@@ -11,5 +12,5 @@ def pathfinder(language):
         musicdirpath = i + homepath[1:] + langdict[language]
         if os.path.isdir(musicdirpath) == True:
             return musicdirpath
-        else:
-            pass
+
+print(pathfinder("en"))
