@@ -8,7 +8,7 @@ from directorator import directorator
 from databaseextender import databaseextender
 
 language = input("Enter de for German or en for English: ")
-musicdirpath = pathfinder(language)
+musicdirpath = pathfinder(language) # MODULE
 print("-------------------------------------------------------------------------")
 print("Dein Musikordner befindet sich in: " + str(musicdirpath))
 print("-------------------------------------------------------------------------")
@@ -29,14 +29,14 @@ for dirpath, dirnames, filenames in os.walk(musicdirpath):
         f_name,f_ext = os.path.splitext(f)
         for e in artists:
                 if f_name.find(e[1]) != -1:
-                        directorator(musicdirpath,f,dirpath,e[1])
+                        directorator(musicdirpath,f,dirpath,e[1]) # MODULE
                 else:
-                        filenames_for_analyzation.append(f_name)
+                        filenames_for_analyzation.append(f_name) # names of files which had no match with artist entries in database
 
 pieces = []
 
 for e in filenames_for_analyzation:
-        z = f_name.split(" ")
+        z = f_name.split(" ") # pieces is an array / 2D list, 1st dimension elements are lists which contain (2nd dimension) strings which originate from the the entries in filenames_for_analyzation
         pieces.append(z)
 
 # for e in os.scandir(musicdirpath):
@@ -66,11 +66,10 @@ def analyzer(f,r,compound_guess,nextpart,count,legacy):
                         if q == "y":
                                 print("Nice we´ll be creating a folder for you")
                                 # add artist to database inorder to run comparison with database again and copy all those whose artist was just added
-                                databaseextender(legacy)
+                                databaseextender(legacy) # MODULE
                                 # directorator(musicdirpath,f,musicdirpath,legacy) - bad idea, as it causes only the third and following files to be copied
                         elif q == "n":
                                 not_necessary_to_query.append(legacy)
-                final.append([legacy,count])
 
 global x
 x = 0
@@ -78,8 +77,8 @@ x = 0
 def start_analyzer(filenames, pieces):
         for f in filenames:
                 for r in pieces:
-                        if pieces.index(r) != filenames.index(f) and f.find(r[0]) != -1:
-                                analyzer(f,r,r[0],r[0],0,"") # passed variables: f = filename; r = Liste der filenamesubstrings auf die ein Leerzeichen folgt; r[0]; r[1]; count = 0; legacy ist leerer string da es kein legacy gibt
+                        if pieces.index(r) != filenames.index(f) and f.find(r[0]) != -1: # r of pieces and f of filenames with the same index suggests that r is a derivative of f which causes a 100% match causing problems in the matching mechanism 
+                                analyzer(f,r,r[0],r[0],0,"") # passed variables: f = filename; r = list of filenamesubstrings which are followed by a space; r[0]; r[1]; count = 0; legacy is an empty string as there is no legacy value
         print(final)
 
 start_analyzer(filenames_for_analyzation,pieces)
