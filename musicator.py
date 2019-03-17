@@ -29,7 +29,7 @@ for dirpath, dirnames, filenames in os.walk(musicdirpath):
         f_name,f_ext = os.path.splitext(f)
         for e in artists:
                 if f_name.find(e[1]) != -1:
-                        directorator(musicdirpath,f,dirpath,e[1]) # MODULE
+                        directorator(musicdirpath,f,str(dirpath),e[1]) # MODULE
                 # else:
                 #         filenames_for_analyzation.append(f_name) # names of files which had no match with artist entries in database
 
@@ -51,21 +51,22 @@ not_necessary_to_query = []
 
 def analyzer(f,r,compound_guess,nextpart,count,legacy):
         if f.find(compound_guess) != -1 and compound_guess not in not_necessary_to_query:
+                print(compound_guess)
                 legacy = compound_guess # savin the confirmed / approved compound_guess for next recursion so that if it fails it will go to else and return legacy, the last ompound_guess that worked
-                print(legacy)
                 i = r.index(nextpart) # getting index of nextpart
                 nextpart = r[i+1] # redefining nextpart as the item following the current nextpart in list r
                 compound_guess = compound_guess + " " + nextpart
                 analyzer(f,r,compound_guess,nextpart,count + 1,legacy)
-        elif count == 3:
+        elif count > 3:
                 q = input("Is " + legacy + " an artist?\n y/n")
                 if q == "y":
                         print("Nice we´ll be creating a folder for you")
                         # add artist to database inorder to run comparison with database again and copy all those whose artist was just added
                         databaseextender(legacy) # MODULE
                         # directorator(musicdirpath,f,musicdirpath,legacy) - bad idea, as it causes only the third and following files to be copied
-                elif q == "n":
                         not_necessary_to_query.append(legacy)
+                elif q == "n":
+                        not_necessary_to_query.append(legacy) # strigs which were assumed as artisnames but werent, because user said they arent
 
 def start_analyzer(filenames, pieces):
         for f in filenames:
@@ -74,3 +75,4 @@ def start_analyzer(filenames, pieces):
                                 analyzer(f,r,r[0],r[0],0,"") # passed variables: f = filename; r = list of filenamesubstrings which are followed by a space; r[0]; r[1]; count = 0; legacy is an empty string as there is no legacy value
 
 start_analyzer(filenames_for_analyzation,pieces)
+print(not_necessary_to_query)
