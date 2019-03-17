@@ -53,14 +53,14 @@ global not_necessary_to_query
 not_necessary_to_query = []
 
 def analyzer(f,r,compound_guess,nextpart,count,legacy):
-        if compound_guess not in not_necessary_to_query and f.find(compound_guess) != -1:
+        if compound_guess not in not_necessary_to_query and f.find(compound_guess) != -1 and count != len(r):
                 count = count + 1
                 i = r.index(nextpart) # getting index of nextpart
                 nextpart = r[i+1] # redefining nextpart as the item following the current nextpart in list r
                 legacy = compound_guess # savin the confirmed / approved compound_guess for next recursion so that if it fails it will go to else and return legacy, the last ompound_guess that worked
                 compound_guess = compound_guess + " " + nextpart
                 analyzer(f,r,compound_guess,nextpart,count,legacy)
-        else: 
+        else:
                 if count == 3:
                         q = input("Is " + legacy + " an artist?\n y/n")
                         if q == "y":
