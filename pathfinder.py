@@ -1,15 +1,15 @@
 import os
 
-def pathfinder(language):
+def pathfinder():
     x = str(os.environ.get("TEMP"))
+    if x.find("User") != -1:
+        lang = "\\Music"
+    if x.find("Benutzer") != -1:
+        lang = "\\Musik"
     y = x.split("\\")
     middle = ":\\" + str(y[1]) + "\\" + str(y[2])
-    langdict = {
-        "de": "\\Musik",
-        "en": "\\Music"
-    }
     driveletters = ["A", "B", "C", "D", "E", "F", "G"]
-    for i in driveletters:
-        musicdirpath = i + middle + langdict[language]
+    for e in driveletters:
+        musicdirpath = e + middle + lang
         if os.path.isdir(musicdirpath) == True:
             return musicdirpath
