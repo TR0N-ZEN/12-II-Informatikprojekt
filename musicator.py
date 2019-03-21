@@ -19,22 +19,24 @@ pointer.execute("select * from artists_table")
 artists = pointer.fetchall()
 artistsdatabaseobject.close()
 
-# filenames = os.scandir(musicdirpath) # optional for only scanning without scanning subfolders in comparison to os.walk()
-for dirpath, dirnames, filenames in os.walk(musicdirpath):
-    for f in filenames:
-        f_name,f_ext = os.path.splitext(f)
-        for e in artists:
-                if f_name.find(e[1]) != -1:
-                        directorator(musicdirpath,str(f),str(dirpath),e[1]) # MODULE
+def check_with_database():
+        # filenames = os.scandir(musicdirpath) # optional for only scanning without scanning subfolders in comparison to os.walk()
+        for dirpath, dirnames, filenames in os.walk(musicdirpath):
+                for f in filenames:
+                        f_name,f_ext = os.path.splitext(f)
+                        for e in artists:
+                                if f_name.find(e[1]) != -1:
+                                        directorator(musicdirpath,str(f),str(dirpath),e[1]) # MODULE
 
-# filenames for string comparison if no artist has been found in the database
 filenames_for_analyzation= []
 pieces = []
-for e in os.scandir(musicdirpath):
-        filenames_for_analyzation.append(e.name)
-        z = e.name.split(" ") # returns a list of strings which in the the string e.name were "seperated" by space
-        pieces.append(z)
-print(z)
+def get_remaining():
+        # filenames for string comparison if no artist has been found in the database
+        for e in os.scandir(musicdirpath):
+                filenames_for_analyzation.append(e.name)
+                z = e.name.split(" ") # returns a list of strings which in the the string e.name were "seperated" by space
+                pieces.append(z)
+        print(z)
 
 global count
 count = 0
@@ -65,5 +67,7 @@ def start_analyzer(filenames, pieces):
                         if pieces.index(r) != filenames.index(f) and f.find(r[0]) != -1: # r of pieces and f of filenames with the same index suggests that r is a derivative of f which causes a 100% match causing problems in the matching mechanism 
                                 analyzer(f,r,r[0],r[0],0,"") # passed variables: f = filename; r = list of filenamesubstrings which are followed by a space; r[0]; r[1]; count = 0; legacy is an empty string as there is no legacy value
 
+check_with_database()
 start_analyzer(filenames_for_analyzation,pieces)
-print(not_necessary_to_query)
+# print(not_necessary_to_query)
+check_with_database()
