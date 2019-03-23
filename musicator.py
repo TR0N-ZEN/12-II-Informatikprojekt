@@ -68,6 +68,7 @@ def start_analyzer(filenames, pieces):
                                 analyzer(f,r,r[0],r[0],0,"") # passed variables: f = filename; r = list of filenamesubstrings which are followed by a space; r[0]; r[1]; count = 0; legacy is an empty string as there is no legacy value
 
 check_with_database()
+get_remaining()
 start_analyzer(filenames_for_analyzation,pieces)
 # print(not_necessary_to_query)
 check_with_database()
