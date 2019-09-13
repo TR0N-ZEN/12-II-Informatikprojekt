@@ -2,6 +2,7 @@ import os
 
 def pathfinder():
     x = str(os.environ.get("TEMP"))
+    print(x)
     if x.find("User") != -1:
         lang = "\\Music"
     if x.find("Benutzer") != -1:

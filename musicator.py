@@ -7,10 +7,24 @@ from pathfinder import pathfinder
 from directorator import directorator
 from databaseextender import databaseextender
 
-musicdirpath = pathfinder() # MODULE
-# print("-------------------------------------------------------------------------")
-# print("Your music is located in: " + musicdirpath)
-# print("-------------------------------------------------------------------------")
+answer = "n"
+while answer != "y":
+        answer = input("Search path autpmatically press 'a' or for entering path manually press 'm': ")
+        if answer == "a":
+                musicdirpath = pathfinder() # MODULE
+        elif answer == "m":
+                musicdirpath = input("Type the path to your desired music folder: ")
+        print("\n-------------------------------------------------------------------------")
+        print("Your music is located in: " + musicdirpath)
+        print("-------------------------------------------------------------------------\n")
+        answer = input("Is that correct? y/n\n\t")
+        if answer == "y":
+                print("Artist database will be loaded.")
+        elif answer == "n":
+                print("Search again!")
+        else:
+                print("ERROR: Invalid answer.")
+
 
 # get elements from database (e[0]=artistname.len(); e[1]=artistname)
 artistsdatabaseobject = sqlite3.connect("artists.db")
@@ -44,7 +58,7 @@ global not_necessary_to_query
 not_necessary_to_query = []
 def analyzer(f,r,compound_guess,nextpart,count,legacy):
         if f.find(compound_guess) != -1 and compound_guess not in not_necessary_to_query:
-                print(compound_guess + "|")
+                # print(compound_guess + "|") show compund guesses
                 legacy = compound_guess # savin the confirmed / approved compound_guess for next recursion so that if it fails it will go to else and return legacy, the last ompound_guess that worked
                 i = r.index(nextpart) # getting index of nextpart
                 nextpart = r[i+1] # redefining nextpart as the item following the current nextpart in list r
